@@ -15,7 +15,12 @@ body{
   line-height:1.6;
 }
 a{text-decoration:none;color:inherit}
-.container{width:92%;max-width:1180px;margin:auto}
+.container{
+  width:92%;
+  max-width:1180px;
+  margin:auto;
+  padding:0 12px;
+}
 nav{
   position:sticky;
   top:0;
@@ -563,6 +568,92 @@ footer h2{color:#fff;margin-bottom:10px}
 @keyframes dashMove{
   to{
     stroke-dashoffset:-30;
+  }
+}
+/* MOBILE FIXES */
+
+html, body{
+  max-width:100%;
+  overflow-x:hidden;
+}
+
+@media(max-width:768px){
+
+  .container{
+    width:100%;
+    max-width:100%;
+    padding:0 18px;
+  }
+
+  .hero-inner{
+    width:100%;
+    padding:0 18px;
+  }
+
+  .grid-2,
+  .three-grid,
+  .grid-3,
+  .stats,
+  .timeline,
+  .arch-grid,
+  .building-grid,
+  .contact-grid{
+    grid-template-columns:1fr !important;
+  }
+
+  .card,
+  .stat,
+  .project-card,
+  .timeline-item,
+  .building-card,
+  .arch-card,
+  .contact-item{
+    width:100%;
+    max-width:100%;
+  }
+
+  .section-title{
+    font-size:32px;
+    line-height:1.2;
+    word-break:normal;
+  }
+
+  .card p,
+  .card li,
+  .timeline-item p,
+  .building-card p,
+  .project-card p{
+    font-size:16px;
+    line-height:1.7;
+    word-wrap:break-word;
+    overflow-wrap:break-word;
+  }
+
+  .timeline{
+    display:grid;
+    grid-template-columns:1fr !important;
+  }
+
+  .timeline-item{
+    min-height:auto;
+  }
+
+  .project-card{
+    grid-template-columns:1fr !important;
+  }
+
+  .skills-row{
+    grid-template-columns:1fr;
+  }
+
+  .skill-icon{
+    margin-bottom:5px;
+  }
+
+  .btn{
+    width:100%;
+    text-align:center;
+    margin:8px 0;
   }
 }
 </style>
