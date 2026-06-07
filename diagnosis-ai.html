@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+
+<title>Commerce AI Diagnosis Platform | Kranthi Saini</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+
+body{
+  font-family:'Inter',sans-serif;
+  background:linear-gradient(180deg,#07111f 0%,#050b12 38%,#040913 100%);
+  color:#fff;
+  line-height:1.6;
+}
+
+a{text-decoration:none;color:inherit}
+
+.container{
+  width:92%;
+  max-width:1180px;
+  margin:auto;
+}
+
+nav{
+  position:sticky;
+  top:0;
+  z-index:100;
+  background:rgba(5,11,18,.95);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(59,130,246,.18);
+}
+
+.nav-inner{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:18px 0;
+}
+
+.logo{
+  font-size:30px;
+  font-weight:800;
+  color:#2f8cff;
+}
+
+.back{
+  border:1px solid #2f8cff;
+  padding:10px 16px;
+  border-radius:8px;
+  color:#2f8cff!important;
+}
+
+.hero{
+  padding:105px 0 85px;
+  text-align:center;
+  background:
+    radial-gradient(circle at center,rgba(47,140,255,.15),transparent 45%),
+    radial-gradient(circle at 20% 20%,rgba(47,140,255,.08),transparent 30%);
+}
+
+.hero-inner{
+  max-width:980px;
+  margin:auto;
+}
+
+.hero h1{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:76px;
+  font-weight:700;
+  letter-spacing:-2px;
+  line-height:1;
+  margin-bottom:24px;
+}
+
+.hero h1 span{
+  color:#2f8cff;
+}
+
+.hero p{
+  max-width:940px;
+  margin:auto;
+  color:#aeb8c5;
+  font-size:20px;
+  line-height:1.8;
+}
+
+.badge,.pill{
+  display:inline-block;
+  border-radius:22px;
+  margin:6px;
+  font-size:14px;
+}
+
+.badge{
+  border:1px solid #2f8cff;
+  color:#2f8cff;
+  padding:8px 16px;
+  background:rgba(47,140,255,.08);
+}
+
+.pill{
+  background:#101a2a;
+  color:#dce9ff;
+  padding:8px 12px;
+  border-radius:8px;
+  font-size:13px;
+}
+
+.section{
+  padding:35px 0;
+}
+
+.section-title{
+  color:#2f8cff;
+  font-size:28px;
+  margin-bottom:22px;
+  text-transform:uppercase;
+}
+
+.grid-3{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:22px;
+}
+
+.grid-2{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:22px;
+}
+
+.card{
+  background:linear-gradient(145deg,rgba(15,23,42,.92),rgba(8,15,26,.96));
+  border:1px solid rgba(47,140,255,.18);
+  border-radius:16px;
+  padding:24px;
+  box-shadow:0 0 30px rgba(0,0,0,.25);
+}
+
+.card h3{
+  color:#2f8cff;
+  margin-bottom:12px;
+}
+
+.card p,.card li{
+  color:#c9d6e2;
+}
+
+ul{
+  padding-left:22px;
+}
+
+.flow{
+  display:grid;
+  grid-template-columns:repeat(6,1fr);
+  gap:14px;
+  text-align:center;
+}
+
+.flow-box{
+  background:#0b1422;
+  border:1px solid rgba(47,140,255,.22);
+  border-radius:14px;
+  padding:18px;
+  color:#c9d6e2;
+}
+
+.flow-box strong{
+  color:#2f8cff;
+}
+
+.diagram{
+  background:#06101d;
+  border:1px solid rgba(47,140,255,.25);
+  padding:18px;
+  border-radius:12px;
+  color:#2f8cff;
+  font-family:monospace;
+  font-size:13px;
+  margin-bottom:16px;
+  white-space:pre-line;
+  overflow-x:auto;
+}
+
+.diagram pre{
+  color:#dce9ff;
+  font-size:16px;
+  line-height:1.8;
+  white-space:pre-wrap;
+}
+
+footer{
+  border-top:1px solid rgba(47,140,255,.18);
+  padding:32px 0;
+  color:#b8c5d3;
+  text-align:center;
+}
+
+@media(max-width:900px){
+  .grid-2,.grid-3,.flow{
+    grid-template-columns:1fr;
+  }
+
+  .hero h1{
+    font-size:48px;
+  }
+
+  .hero p{
+    font-size:17px;
+  }
+}
+
+@media(max-width:520px){
+  .hero{
+    padding:85px 0 65px;
+  }
+
+  .hero h1{
+    font-size:38px;
+  }
+}
+.card,
+.flow-box,
+.badge{
+  transition:all .25s ease;
+}
+
+.card:hover{
+  transform:translateY(-6px);
+  border-color:rgba(47,140,255,.45);
+  box-shadow:0 0 28px rgba(47,140,255,.18);
+}
+
+.flow-box:hover{
+  transform:translateY(-4px);
+  border-color:rgba(47,140,255,.45);
+}
+
+.badge:hover{
+  background:#2f8cff;
+  color:#fff;
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <div class="container nav-inner">
+    <div class="logo">KS</div>
+    <a class="back" href="index.html">← Back to Portfolio</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="container hero-inner">
+
+    <h1>
+      Commerce AI <span>Diagnosis Platform</span>
+    </h1>
+
+    <p>
+      A FastAPI-based Enterprise AI diagnosis platform that compares product records between
+      Stage and Production environments. The current implementation uses LangGraph orchestration,
+      MCP-connected tools, domain-specific diagnosis logic, root-cause aggregation and local LLM
+      summary generation with Cloud LLM fallback. The architecture is designed to evolve into a
+      future multi-agent system with Supervisor, Diagnosis and Summary Agents.
+    </p>
+
+    <br>
+
+    <span class="badge">FastAPI</span>
+    <span class="badge">LangGraph Orchestration</span>
+    <span class="badge">MCP Tools</span>
+    <span class="badge">Root Cause Analysis</span>
+    <span class="badge">Local LLM</span>
+    <span class="badge">Groq Fallback</span>
+    <span class="badge">Future Multi-Agent Architecture</span>
+
+  </div>
+</section>
+
+<section class="section">
+  <div class="container grid-3">
+
+    <div class="card">
+      <h3>Problem</h3>
+      <p>
+        Commerce product behavior can differ between Stage and Production because of
+  catalog, inventory, pricing, publishing or product-state differences.
+  Business users and customer service teams need a faster and more consistent
+  way to identify root causes.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>Current Solution</h3>
+      <p>
+        The platform accepts a part number, fetches Stage and Production records through
+        MCP-connected tools, runs domain-specific diagnosis logic and returns root cause,
+        severity, recommendations and an executive summary.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>Business Value</h3>
+      <p>
+        <p>
+  Reduces manual investigation, improves diagnosis accuracy,
+  standardizes support workflows and helps business and support teams
+  resolve commerce issues faster.
+</p>
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">Current Runtime Flow</h2>
+
+    <div class="flow">
+      <div class="flow-box"><strong>1</strong><br>POST /diagnose-part</div>
+      <div class="flow-box"><strong>2</strong><br>Stage Lookup</div>
+      <div class="flow-box"><strong>3</strong><br>Production Lookup</div>
+      <div class="flow-box"><strong>4</strong><br>LangGraph Orchestration</div>
+      <div class="flow-box"><strong>5</strong><br>Domain Diagnosis</div>
+      <div class="flow-box"><strong>6</strong><br>Executive Summary</div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container grid-2">
+
+    <div class="card">
+      <h2 class="section-title">Current Architecture</h2>
+
+      <div class="diagram"><pre>Client
+  ↓
+FastAPI API Layer
+  ↓
+Compiled LangGraph Diagnosis Workflow
+  ↓
+MCP Product Service
+  ↓
+MCP Product Server
+  ↓
+Stage / Production Product Records
+  ↓
+Catalog + Inventory + Pricing Diagnosis Logic
+  ↓
+Root Cause Aggregation
+  ↓
+Local LLM Summary
+  ↓
+Cloud LLM Fallback
+  ↓
+API Response</pre></div>
+    </div>
+
+    <div class="card">
+      <h2 class="section-title">Diagnosis Components</h2>
+
+      <ul>
+        <li><strong>Catalog Diagnosis:</strong> buyable, available, published and mark-for-delete checks</li>
+        <li><strong>Inventory Diagnosis:</strong> Stage vs Production inventory differences</li>
+        <li><strong>Pricing Diagnosis:</strong> missing or mismatched price diagnosis</li>
+        <li><strong>LangGraph Workflow:</strong> orchestrates the diagnosis process</li>
+        <li><strong>MCP Tools:</strong> retrieve Stage and Production product data</li>
+        <li><strong>Summary Logic:</strong> generates executive summary with fallback support</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<section class="section">
+  <div class="container grid-2">
+
+    <div class="card">
+      <h2 class="section-title">Future Multi-Agent Enhancement</h2>
+
+      <p>
+        The next enhancement is to evolve this LangGraph workflow into a
+  Supervisor-driven Multi-Agent Architecture. The Supervisor Agent will route
+  requests to specialized Diagnosis Agents and Summary Agents, which will call
+  MCP-connected tools to retrieve enterprise data and generate structured
+  recommendations.
+      </p>
+
+      <br>
+
+      <div class="diagram"><pre>User Request
+  ↓
+Supervisor Agent
+  ↓
+Catalog Diagnosis Agent
+Inventory Diagnosis Agent
+Pricing Diagnosis Agent
+  ↓
+Summary Agent
+  ↓
+MCP Tools
+  ↓
+Enterprise Systems
+  ↓
+Final Recommendation</pre></div>
+    </div>
+
+    <div class="card">
+      <h2 class="section-title">Sample Diagnosis Rules</h2>
+
+      <ul>
+        <li>Stage buyable but Production not buyable</li>
+        <li>Stage published but Production unpublished</li>
+        <li>Stage or Production product marked for delete</li>
+        <li>Inventory exists in Stage but missing in Production</li>
+        <li>Price exists in Stage but missing in Production</li>
+        <li>Stage and Production product-state mismatch</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<section class="section">
+  <div class="container grid-2">
+
+    <div class="card">
+      <h2 class="section-title">Technology Stack</h2>
+
+      <span class="pill">Python</span>
+      <span class="pill">FastAPI</span>
+      <span class="pill">LangGraph</span>
+      <span class="pill">MCP Tools</span>
+      <span class="pill">Local LLM</span>
+      <span class="pill">Groq Fallback</span>
+      <span class="pill">Pydantic</span>
+      <span class="pill">Docker Compose</span>
+      <span class="pill">Uvicorn</span>
+      <span class="pill">Root Cause Analysis</span>
+    </div>
+
+   <div class="card">
+  <h2 class="section-title">What This Shows</h2>
+
+  <ul>
+    <li>LangGraph workflow orchestration for enterprise diagnosis</li>
+    <li>MCP-connected tools for enterprise product data access</li>
+    <li>Domain-specific diagnosis logic for catalog, inventory and pricing</li>
+    <li>Root cause aggregation and executive summary generation</li>
+    <li>Local LLM summary generation with Groq fallback mechanism</li>
+    <li>Future-ready design for Supervisor-driven Multi-Agent orchestration</li>
+  </ul>
+</div>
+
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    © 2026 Kranthi Saini | Commerce AI Diagnosis Platform
+  </div>
+</footer>
+
+</body>
+</html>
