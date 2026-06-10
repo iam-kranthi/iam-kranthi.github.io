@@ -1,422 +1,220 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
-
-<title>Auto Parts Technical Knowledge Platform | Kranthi Saini</title>
-
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-
-html{scroll-behavior:smooth}
-
-body{
-  font-family:'Inter',sans-serif;
-  background:linear-gradient(180deg,#07111f 0%,#050b12 38%,#040913 100%);
-  color:#fff;
-  line-height:1.6;
-}
-
-a{text-decoration:none;color:inherit}
-
-.container{
-  width:92%;
-  max-width:1180px;
-  margin:auto;
-}
-
-nav{
-  position:sticky;
-  top:0;
-  z-index:100;
-  background:rgba(5,11,18,.95);
-  backdrop-filter:blur(14px);
-  border-bottom:1px solid rgba(59,130,246,.18);
-}
-
-.nav-inner{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:18px 0;
-}
-
-.logo{
-  font-size:30px;
-  font-weight:800;
-  color:#2f8cff;
-}
-
-.back{
-  border:1px solid #2f8cff;
-  padding:10px 16px;
-  border-radius:8px;
-  color:#2f8cff!important;
-}
-
-.hero{
-  padding:105px 0 85px;
-  text-align:center;
-  background:
-    radial-gradient(circle at center,rgba(47,140,255,.15),transparent 45%),
-    radial-gradient(circle at 20% 20%,rgba(47,140,255,.08),transparent 30%);
-}
-
-.hero-inner{
-  max-width:980px;
-  margin:auto;
-}
-
-.hero h1{
-  font-family:'Space Grotesk',sans-serif;
-  font-size:76px;
-  font-weight:700;
-  letter-spacing:-2px;
-  line-height:1;
-  margin-bottom:24px;
-}
-
-.hero h1 span{
-  color:#2f8cff;
-}
-
-.hero p{
-  max-width:920px;
-  margin:auto;
-  color:#aeb8c5;
-  font-size:20px;
-  line-height:1.8;
-}
-
-.badge,.pill{
-  display:inline-block;
-  border-radius:22px;
-  margin:6px;
-  font-size:14px;
-}
-
-.badge{
-  border:1px solid #2f8cff;
-  color:#2f8cff;
-  padding:8px 16px;
-  background:rgba(47,140,255,.08);
-}
-
-.pill{
-  background:#101a2a;
-  color:#dce9ff;
-  padding:8px 12px;
-  border-radius:8px;
-  font-size:13px;
-}
-
-.section{
-  padding:35px 0;
-}
-
-.section-title{
-  color:#2f8cff;
-  font-size:28px;
-  margin-bottom:22px;
-  text-transform:uppercase;
-}
-
-.grid-3{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:22px;
-}
-
-.grid-2{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:22px;
-}
-
-.card{
-  background:linear-gradient(145deg,rgba(15,23,42,.92),rgba(8,15,26,.96));
-  border:1px solid rgba(47,140,255,.18);
-  border-radius:16px;
-  padding:24px;
-  box-shadow:0 0 30px rgba(0,0,0,.25);
-}
-
-.card,.flow-box{
-  transition:transform .25s ease, border-color .25s ease, box-shadow .25s ease;
-}
-
-.card:hover,.flow-box:hover{
-  transform:translateY(-5px);
-  border-color:rgba(47,140,255,.45);
-  box-shadow:0 0 28px rgba(47,140,255,.16);
-}
-
-.card h3{
-  color:#2f8cff;
-  margin-bottom:12px;
-}
-
-.card p,.card li{
-  color:#c9d6e2;
-}
-
-ul{
-  padding-left:22px;
-}
-
-.flow{
-  display:grid;
-  grid-template-columns:repeat(6,1fr);
-  gap:14px;
-  text-align:center;
-}
-
-.flow-box{
-  background:#0b1422;
-  border:1px solid rgba(47,140,255,.22);
-  border-radius:14px;
-  padding:18px;
-  color:#c9d6e2;
-}
-
-.flow-box strong{
-  color:#2f8cff;
-}
-
-.diagram{
-  background:#06101d;
-  border:1px solid rgba(47,140,255,.25);
-  padding:18px;
-  border-radius:12px;
-  color:#2f8cff;
-  font-family:monospace;
-  font-size:13px;
-  margin-bottom:16px;
-  white-space:pre-line;
-  overflow-x:auto;
-}
-
-.diagram pre{
-  color:#dce9ff;
-  font-size:16px;
-  line-height:1.8;
-  white-space:pre-wrap;
-}
-
-footer{
-  border-top:1px solid rgba(47,140,255,.18);
-  padding:32px 0;
-  color:#b8c5d3;
-  text-align:center;
-}
-
-footer h2{
-  color:#fff;
-  margin-bottom:10px;
-}
-
-footer p{
-  color:#b8c5d3;
-}
-
-@media(max-width:900px){
-  .grid-2,.grid-3,.flow{
-    grid-template-columns:1fr;
-  }
-
-  .hero h1{
-    font-size:48px;
-  }
-
-  .hero p{
-    font-size:17px;
-  }
-}
-
-@media(max-width:520px){
-  .hero{
-    padding:85px 0 65px;
-  }
-
-  .hero h1{
-    font-size:38px;
-  }
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="RAG architecture for an auto-parts technical knowledge platform.">
+  <title>Auto Parts Technical Knowledge Platform | Kranthi Saini</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="case-study.css">
+  <style>
+    .rag-board .source { top: 92px; left: 7%; }
+    .rag-board .extract { top: 220px; left: 7%; }
+    .rag-board .chunks { top: 348px; left: 7%; }
+    .rag-board .embedding { top: 220px; left: 40%; }
+    .rag-board .vector { top: 92px; right: 7%; }
+    .rag-board .retriever { top: 262px; right: 7%; }
+    .rag-board .answer { right: 7%; bottom: 66px; }
+    .rag-board .line-a { top: 174px; left: 13%; width: 82px; transform: rotate(90deg); }
+    .rag-board .line-b { top: 302px; left: 13%; width: 82px; transform: rotate(90deg); }
+    .rag-board .line-c { top: 262px; left: 25%; width: 120px; }
+    .rag-board .line-d { top: 220px; left: 58%; width: 110px; transform: rotate(-32deg); }
+    .rag-board .line-e { top: 313px; left: 58%; width: 110px; transform: rotate(18deg); }
+    .rag-board .line-f { top: 404px; right: 13%; width: 82px; transform: rotate(90deg); }
+  </style>
 </head>
-
-<body>
-
-<nav>
-  <div class="container nav-inner">
-    <div class="logo">KS</div>
-    <a class="back" href="index.html">← Back to Portfolio</a>
-  </div>
-</nav>
-
-<section class="hero">
-  <div class="container hero-inner">
-
-    <h1>
-      Auto Parts <span>Technical Knowledge Platform</span>
-    </h1>
-
-    <p>
-      An Enterprise RAG platform for auto-parts technical knowledge. The application
-      ingests local HTML articles, extracts and chunks technical content, creates
-      HuggingFace embeddings, stores vectors in ChromaDB and delivers grounded
-      AI answers using a Local LLM with Cloud LLM fallback.
-    </p>
-
-    <br>
-
-    <span class="badge">FastAPI</span>
-    <span class="badge">RAG</span>
-    <span class="badge">ChromaDB</span>
-    <span class="badge">HuggingFace Embeddings</span>
-    <span class="badge">Local LLM</span>
-    <span class="badge">Cloud LLM Fallback</span>
-    <span class="badge">LangChain</span>
-
-  </div>
-</section>
-
-<section class="section">
-  <div class="container grid-3">
-
-    <div class="card">
-      <h3>Business Problem</h3>
-      <p>
-        Auto-parts technical knowledge is often spread across HTML articles,
-        manuals and support documents. Users need quick, accurate answers
-        without manually searching many pages.
-      </p>
+<body class="theme-rag">
+  <nav class="case-nav">
+    <div class="shell nav-inner">
+      <a class="brand" href="index.html#writing">
+        <span class="brand-mark">KS</span>
+        <span class="brand-copy"><b>Kranthi Saini</b><small>Architecture case study</small></span>
+      </a>
+      <div class="nav-actions">
+        <a class="nav-link nav-link-secondary" href="diagnosis-ai.html">Next: Diagnosis</a>
+        <a class="nav-link" href="index.html#writing">← Portfolio</a>
+      </div>
     </div>
+  </nav>
 
-    <div class="card">
-      <h3>AI Solution</h3>
-      <p>
-        The system extracts technical content from HTML files, chunks the text,
-        creates HuggingFace embeddings, stores vectors in ChromaDB and retrieves
-        relevant context for AI-powered question answering with local and cloud LLM fallback.
-      </p>
+  <main>
+    <section class="shell case-hero">
+      <div class="hero-copy">
+        <div class="eyebrow">01 · Technical Retrieval</div>
+        <h1>Auto Parts <span>Knowledge Platform.</span></h1>
+        <p>
+          A production-oriented RAG system that turns fragmented HTML articles,
+          manuals, and support content into grounded technical answers with
+          persistent retrieval and resilient model fallback.
+        </p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="https://github.com/iam-kranthi/auto-parts-technical-knowledge-assistant" target="_blank" rel="noreferrer">View GitHub repository ↗</a>
+          <a class="button" href="#architecture">Explore architecture ↓</a>
+          <a class="button" href="diagnosis-ai.html">Continue to diagnosis →</a>
+        </div>
+        <div class="hero-tags">
+          <span>FastAPI</span><span>HuggingFace</span><span>ChromaDB</span>
+          <span>LangChain</span><span>Local LLM</span>
+        </div>
+      </div>
+
+      <div class="hero-system rag-hero-map" aria-label="RAG retrieval architecture visualization">
+        <div class="system-bar"><span>retrieval_system.map</span><i>grounded</i></div>
+        <div class="source-stack">
+          <span>HTML articles</span>
+          <span>Service manuals</span>
+          <span>Support notes</span>
+        </div>
+        <div class="embed-core">EMBED</div>
+        <div class="vector-field" aria-hidden="true">
+          <i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+          <i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+          <i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+          <i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+          <i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+        </div>
+        <div class="answer-panel">
+          <small>ANSWER · SOURCES VERIFIED</small>
+          <p>Retrieved context is ranked, assembled, and passed to the local model with cloud fallback.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-compact">
+      <div class="shell impact-grid">
+        <article class="impact-item">
+          <small>01 · Problem</small>
+          <h3>Knowledge is fragmented.</h3>
+          <p>Technical guidance is distributed across HTML pages, manuals, and support documents.</p>
+        </article>
+        <article class="impact-item">
+          <small>02 · System</small>
+          <h3>Retrieval creates one answer surface.</h3>
+          <p>Content is cleaned, chunked, embedded, indexed, and retrieved through an API-first workflow.</p>
+        </article>
+        <article class="impact-item">
+          <small>03 · Value</small>
+          <h3>Support teams get one grounded answer surface.</h3>
+          <p>Responses preserve retrieved source context so users can inspect the evidence behind an answer.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="architecture" class="section">
+      <div class="shell architecture-layout">
+        <div class="architecture-copy">
+          <span class="section-index">Architecture · 01</span>
+          <h2>A retrieval pipeline built for dependable context.</h2>
+          <p>
+            The design separates ingestion from runtime retrieval. Documents are
+            processed once into a persistent vector store; queries then retrieve
+            only the most relevant passages before model generation.
+          </p>
+        </div>
+
+        <div class="architecture-board rag-board" aria-label="Detailed RAG architecture">
+          <span class="board-label">RAG_PIPELINE · DATA + RUNTIME</span>
+          <div class="node source"><small>Source</small><b>HTML knowledge</b></div>
+          <div class="node extract"><small>Parse</small><b>BeautifulSoup</b></div>
+          <div class="node chunks"><small>Prepare</small><b>Recursive chunks</b></div>
+          <div class="node node-main embedding"><small>Represent</small><b>HF embeddings</b></div>
+          <div class="node vector"><small>Persist</small><b>ChromaDB</b></div>
+          <div class="node retriever"><small>Search</small><b>Semantic retriever</b></div>
+          <div class="node node-main answer"><small>Generate</small><b>Grounded answer + fallback</b></div>
+          <i class="connector line-a"></i><i class="connector line-b"></i>
+          <i class="connector line-c"></i><i class="connector line-d"></i>
+          <i class="connector line-e"></i><i class="connector line-f"></i>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="shell">
+        <div class="section-head">
+          <div>
+            <span class="section-index">Capabilities · 02</span>
+            <h2>What makes it production-oriented.</h2>
+          </div>
+          <p>
+            The implementation focuses on durable ingestion, predictable retrieval,
+            API boundaries, and graceful fallback rather than a single demo query.
+          </p>
+        </div>
+
+        <div class="feature-grid">
+          <article class="feature-card feature-wide">
+            <small>Retrieval quality</small>
+            <h3>Content is prepared for semantic search, not stored as raw pages.</h3>
+            <p>HTML cleanup and recursive chunking produce passages sized for embedding, ranking, and grounded generation.</p>
+          </article>
+          <article class="feature-card">
+            <small>Persistence</small>
+            <h3>ChromaDB vector storage</h3>
+            <p>The vector index survives application restarts and supports repeatable retrieval.</p>
+          </article>
+          <article class="feature-card">
+            <small>Reliability</small>
+            <h3>Local-first model routing</h3>
+            <p>A cloud model fallback preserves response availability when local generation is insufficient.</p>
+          </article>
+          <article class="feature-card">
+            <small>Interface</small>
+            <h3>FastAPI application boundary</h3>
+            <p>Health checks and typed request models make the retrieval system easier to integrate and operate.</p>
+          </article>
+          <article class="feature-card feature-wide">
+            <small>Architecture highlights</small>
+            <h3>The architecture demonstrates</h3>
+            <ul>
+              <li>Embedding-based technical knowledge retrieval</li>
+              <li>Persistent vector database design</li>
+              <li>Grounded response construction with source context</li>
+              <li>Fallback-oriented model integration</li>
+            </ul>
+          </article>
+          <article class="feature-card">
+            <small>Engineering learnings</small>
+            <h3>What the implementation made clear</h3>
+            <ul>
+              <li>Chunk quality matters more than adding retrieval complexity</li>
+              <li>Persistent indexing makes ingestion and serving independently operable</li>
+              <li>Grounded answers require source context, not only semantic similarity</li>
+              <li>Model fallback belongs behind one stable response contract</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-compact">
+      <div class="shell stack-band">
+        <h2>Implementation stack</h2>
+        <div class="stack-list">
+          <span>Python</span><span>FastAPI</span><span>Uvicorn</span><span>Pydantic</span>
+          <span>BeautifulSoup</span><span>LangChain</span><span>HuggingFace</span>
+          <span>ChromaDB</span><span>Local LLM</span><span>Cloud fallback</span><span>Pytest</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <a class="shell next-case" href="diagnosis-ai.html">
+        <div>
+          <small>Next architecture · 02</small>
+          <h2>From retrieving knowledge to diagnosing commerce failures.</h2>
+        </div>
+        <span class="next-arrow">↗</span>
+      </a>
+    </section>
+  </main>
+
+  <footer class="case-footer">
+    <div class="shell footer-inner">
+      <span>© 2026 Kranthi Saini</span>
+      <span>RAG · Auto Parts Knowledge Platform</span>
     </div>
-
-    <div class="card">
-      <h3>Business Value</h3>
-      <p>
-        Improves technical support speed, makes knowledge searchable,
-        reduces manual lookup effort and creates a reusable RAG foundation
-        for auto-parts assistance.
-      </p>
-    </div>
-
-  </div>
-</section>
-
-<section class="section">
-  <div class="container">
-    <h2 class="section-title">RAG + Fallback Flow</h2>
-
-    <div class="flow">
-      <div class="flow-box"><strong>1</strong><br>HTML Articles</div>
-      <div class="flow-box"><strong>2</strong><br>Text Extraction</div>
-      <div class="flow-box"><strong>3</strong><br>HuggingFace Embeddings</div>
-      <div class="flow-box"><strong>4</strong><br>Vector Search</div>
-      <div class="flow-box"><strong>5</strong><br>Local LLM</div>
-      <div class="flow-box"><strong>6</strong><br>Fallback Response</div>
-    </div>
-  </div>
-</section>
-
-<section class="section">
-  <div class="container grid-2">
-
-    <div class="card">
-      <h2 class="section-title">RAG Architecture</h2>
-
-      <div class="diagram"><pre>Source HTML Articles
-      ↓
-BeautifulSoup
-      ↓
-Recursive Text Chunking
-      ↓
-HuggingFace Embeddings
-      ↓
-Persistent ChromaDB Vector Store
-      ↓
-Retriever
-      ↓
-Local LLM
-      ↓
-Cloud LLM Fallback
-      ↓
-Answer with Sources</pre></div>
-    </div>
-
-    <div class="card">
-      <h2 class="section-title">Key Features</h2>
-
-      <ul>
-        <li>FastAPI health check</li>
-        <li>HTML extraction and cleanup using BeautifulSoup</li>
-        <li>Recursive text chunking for retrieval-friendly passages</li>
-        <li>HuggingFace embeddings for vector representation</li>
-        <li>Persistent ChromaDB vector storage</li>
-        <li>Local LLM response generation with cloud LLM fallback</li>
-        <li>Fallback mechanism for reliability and enterprise resilience</li>
-      </ul>
-    </div>
-
-  </div>
-</section>
-
-<section class="section">
-  <div class="container grid-2">
-
-    <div class="card">
-      <h2 class="section-title">Technology Stack</h2>
-
-      <span class="pill">Python</span>
-      <span class="pill">FastAPI</span>
-      <span class="pill">Uvicorn</span>
-      <span class="pill">Pydantic</span>
-      <span class="pill">BeautifulSoup</span>
-      <span class="pill">ChromaDB</span>
-      <span class="pill">HuggingFace Embeddings</span>
-      <span class="pill">LangChain</span>
-      <span class="pill">Local LLM</span>
-      <span class="pill">Cloud LLM Fallback</span>
-      <span class="pill">Pytest</span>
-    </div>
-
-    <div class="card">
-      <h2 class="section-title">What This Shows</h2>
-
-      <ul>
-        <li>Hands-on RAG implementation</li>
-        <li>HuggingFace embedding-based retrieval architecture</li>
-        <li>Vector database design using ChromaDB</li>
-        <li>API-first AI application design using FastAPI</li>
-        <li>Enterprise knowledge retrieval thinking</li>
-        <li>Fallback mechanism using local and cloud LLMs for resilient AI responses</li>
-      </ul>
-    </div>
-
-  </div>
-</section>
-
-<footer>
-  <div class="container">
-    <h2>Enterprise RAG Knowledge Platform</h2>
-    <p>FastAPI • HuggingFace Embeddings • ChromaDB • Local & Cloud LLM Fallback</p>
-    <br>
-    <p>© 2026 Kranthi Saini</p>
-  </div>
-</footer>
-
+  </footer>
 </body>
 </html>

@@ -1,495 +1,226 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
-
-<title>AWS Bedrock AgentCore Deployment | Kranthi Saini</title>
-
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-
-body{
-  font-family:'Inter',sans-serif;
-  background:linear-gradient(180deg,#07111f 0%,#050b12 38%,#040913 100%);
-  color:#fff;
-  line-height:1.6;
-}
-
-a{text-decoration:none;color:inherit}
-
-.container{
-  width:92%;
-  max-width:1180px;
-  margin:auto;
-}
-
-nav{
-  position:sticky;
-  top:0;
-  z-index:100;
-  background:rgba(5,11,18,.95);
-  backdrop-filter:blur(14px);
-  border-bottom:1px solid rgba(59,130,246,.18);
-}
-
-.nav-inner{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:18px 0;
-}
-
-.logo{
-  font-size:30px;
-  font-weight:800;
-  color:#2f8cff;
-}
-
-.back{
-  border:1px solid #2f8cff;
-  padding:10px 16px;
-  border-radius:8px;
-  color:#2f8cff!important;
-}
-
-.hero{
-  padding:105px 0 85px;
-  text-align:center;
-  background:
-    radial-gradient(circle at center,rgba(47,140,255,.15),transparent 45%),
-    radial-gradient(circle at 20% 20%,rgba(47,140,255,.08),transparent 30%);
-}
-
-.hero-inner{
-  max-width:980px;
-  margin:auto;
-}
-
-.hero h1{
-  font-family:'Space Grotesk',sans-serif;
-  font-size:76px;
-  font-weight:700;
-  letter-spacing:-2px;
-  line-height:1;
-  margin-bottom:18px;
-}
-
-.hero h1 span{
-  color:#2f8cff;
-}
-
-.hero h2{
-  color:#c9d6e2;
-  font-size:26px;
-  margin-bottom:24px;
-  font-weight:500;
-}
-
-.hero p{
-  max-width:940px;
-  margin:auto;
-  color:#aeb8c5;
-  font-size:20px;
-  line-height:1.8;
-}
-
-.badge,.pill{
-  display:inline-block;
-  border-radius:22px;
-  margin:6px;
-  font-size:14px;
-}
-
-.badge{
-  border:1px solid #2f8cff;
-  color:#2f8cff;
-  padding:8px 16px;
-  background:rgba(47,140,255,.08);
-}
-
-.pill{
-  background:#101a2a;
-  color:#dce9ff;
-  padding:8px 12px;
-  border-radius:8px;
-  font-size:13px;
-}
-
-.section{
-  padding:35px 0;
-}
-
-.section-title{
-  color:#2f8cff;
-  font-size:28px;
-  margin-bottom:22px;
-  text-transform:uppercase;
-}
-
-.grid-3{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:22px;
-}
-
-.grid-2{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:22px;
-}
-
-.card{
-  background:linear-gradient(145deg,rgba(15,23,42,.92),rgba(8,15,26,.96));
-  border:1px solid rgba(47,140,255,.18);
-  border-radius:16px;
-  padding:24px;
-  box-shadow:0 0 30px rgba(0,0,0,.25);
-}
-
-.card h3{
-  color:#2f8cff;
-  margin-bottom:12px;
-}
-
-.card p,.card li{
-  color:#c9d6e2;
-}
-
-ul{
-  padding-left:22px;
-}
-
-.flow{
-  display:grid;
-  grid-template-columns:repeat(6,1fr);
-  gap:14px;
-  text-align:center;
-}
-
-.flow-box{
-  background:#0b1422;
-  border:1px solid rgba(47,140,255,.22);
-  border-radius:14px;
-  padding:18px;
-  color:#c9d6e2;
-}
-
-.flow-box strong{
-  color:#2f8cff;
-}
-
-.diagram{
-  background:#06101d;
-  border:1px solid rgba(47,140,255,.25);
-  padding:18px;
-  border-radius:12px;
-  color:#2f8cff;
-  font-family:monospace;
-  font-size:13px;
-  margin-bottom:16px;
-  white-space:pre-line;
-  overflow-x:auto;
-}
-
-.diagram pre{
-  color:#dce9ff;
-  font-size:16px;
-  line-height:1.8;
-  white-space:pre-wrap;
-}
-
-footer{
-  border-top:1px solid rgba(47,140,255,.18);
-  padding:32px 0;
-  color:#b8c5d3;
-  text-align:center;
-}
-
-@media(max-width:900px){
-  .grid-2,.grid-3,.flow{
-    grid-template-columns:1fr;
-  }
-
-  .hero h1{
-    font-size:48px;
-  }
-
-  .hero h2{
-    font-size:22px;
-  }
-
-  .hero p{
-    font-size:17px;
-  }
-}
-
-@media(max-width:520px){
-  .hero{
-    padding:85px 0 65px;
-  }
-
-  .hero h1{
-    font-size:38px;
-  }
-}
-.card,
-.flow-box,
-.badge{
-  transition:all .25s ease;
-}
-
-.card:hover{
-  transform:translateY(-6px);
-  border-color:rgba(47,140,255,.45);
-  box-shadow:0 0 28px rgba(47,140,255,.18);
-}
-
-.flow-box:hover{
-  transform:translateY(-4px);
-  border-color:rgba(47,140,255,.45);
-}
-
-.badge:hover{
-  background:#2f8cff;
-  color:#fff;
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="AWS Bedrock AgentCore deployment architecture for a commerce AI diagnosis platform.">
+  <title>AWS Bedrock AgentCore Deployment | Kranthi Saini</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="case-study.css">
+  <style>
+    .bedrock-board .request { top: 82px; left: 50%; transform: translateX(-50%); }
+    .bedrock-board .iam { top: 176px; left: 50%; transform: translateX(-50%); }
+    .bedrock-board .agentcore { top: 280px; right: 11%; left: 11%; text-align: center; }
+    .bedrock-board .container { top: 395px; left: 7%; }
+    .bedrock-board .workflow { top: 395px; left: 50%; transform: translateX(-50%); }
+    .bedrock-board .tools { top: 395px; right: 7%; }
+    .bedrock-board .cloudwatch { right: 13%; bottom: 43px; left: 13%; text-align: center; }
+    .bedrock-board .line-a { top: 151px; left: 50%; width: 28px; transform: rotate(90deg); }
+    .bedrock-board .line-b { top: 245px; left: 50%; width: 38px; transform: rotate(90deg); }
+    .bedrock-board .line-c { top: 362px; left: 28%; width: 110px; transform: rotate(14deg); }
+    .bedrock-board .line-d { top: 363px; left: 50%; width: 36px; transform: rotate(90deg); }
+    .bedrock-board .line-e { top: 362px; left: 59%; width: 110px; transform: rotate(-14deg); }
+    .bedrock-board .line-f { bottom: 108px; left: 50%; width: 72px; transform: rotate(90deg); }
+  </style>
 </head>
+<body class="theme-bedrock">
+  <nav class="case-nav">
+    <div class="shell nav-inner">
+      <a class="brand" href="index.html#writing">
+        <span class="brand-mark">KS</span>
+        <span class="brand-copy"><b>Kranthi Saini</b><small>Architecture case study</small></span>
+      </a>
+      <div class="nav-actions">
+        <a class="nav-link nav-link-secondary" href="diagnosis-ai.html">← Diagnosis</a>
+        <a class="nav-link" href="index.html#writing">Portfolio</a>
+      </div>
+    </div>
+  </nav>
 
-<body>
-
-<nav>
-  <div class="container nav-inner">
-    <div class="logo">KS</div>
-    <a class="back" href="index.html">← Back to Portfolio</a>
-  </div>
-</nav>
-
-<section class="hero">
-  <div class="container hero-inner">
-
-    <h1>
-      AWS Bedrock <span>AgentCore Deployment</span>
-    </h1>
-
-    <h2>
-      Commerce AI Diagnosis Platform
-    </h2>
-
-    <p>
-      Cloud-native deployment of the Commerce AI Diagnosis Platform using AWS Bedrock AgentCore.
-      The solution deploys LangGraph orchestration workflows and MCP-connected enterprise tools
-      within a containerized AgentCore runtime, providing secure execution, observability,
-      scalability and enterprise-grade AI operations. The architecture is designed to evolve
-      toward future multi-agent orchestration.
-    </p>
-
-    <br>
-
-    <span class="badge">AWS Bedrock AgentCore</span>
-    <span class="badge">LangGraph Orchestration</span>
-    <span class="badge">MCP Tools</span>
-    <span class="badge">Docker</span>
-    <span class="badge">CloudWatch</span>
-    <span class="badge">IAM Security</span>
-    <span class="badge">Groq Fallback</span>
-
-  </div>
-</section>
-
-<section class="section">
-  <div class="container grid-3">
-
-    <div class="card">
-      <h3>Problem</h3>
-      <p>
+  <main>
+    <section class="shell case-hero">
+      <div class="hero-copy">
+        <div class="eyebrow">03 · Cloud Operations</div>
+        <h1>AWS Bedrock <span>AgentCore Deployment.</span></h1>
         <p>
-  Enterprise AI diagnosis workflows require a secure and scalable runtime
-  environment with containerized deployment, observability, operational
-  monitoring and cloud-native governance to support enterprise-grade AI
-  applications.
-</p>
-      </p>
+          A cloud-native runtime for the Commerce AI Diagnosis Platform,
+          combining containerized LangGraph execution, MCP-connected business
+          tools, IAM authorization, and CloudWatch observability.
+        </p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="https://github.com/iam-kranthi/commerce-ai-diagnosis-platform-bedrock" target="_blank" rel="noreferrer">View GitHub repository ↗</a>
+          <a class="button" href="#architecture">Explore runtime ↓</a>
+          <a class="button" href="diagnosis-ai.html">Review diagnosis graph ←</a>
+        </div>
+        <div class="hero-tags">
+          <span>Bedrock AgentCore</span><span>Docker</span><span>IAM</span>
+          <span>CloudWatch</span><span>LangGraph</span>
+        </div>
+      </div>
+
+      <div class="hero-system bedrock-hero-map" aria-label="AWS AgentCore runtime visualization">
+        <div class="system-bar"><span>agentcore_runtime.stack</span><i>healthy</i></div>
+        <div class="cloud-ring" aria-hidden="true"></div>
+        <div class="runtime-tower">
+          <div class="runtime-tier"><small>REQUEST</small><b>IAM-authorized invocation</b></div>
+          <div class="runtime-tier tier-core"><small>RUNTIME</small><b>AWS Bedrock AgentCore</b></div>
+          <div class="runtime-tier"><small>CONTAINER</small><b>LangGraph application</b></div>
+          <div class="runtime-tier"><small>TOOLS</small><b>MCP business services</b></div>
+        </div>
+        <div class="telemetry-row">
+          <span>logs · live</span><span>traces · active</span><span>metrics · normal</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-compact">
+      <div class="shell impact-grid">
+        <article class="impact-item">
+          <small>01 · Boundary</small>
+          <h3>AI execution needs a controlled runtime.</h3>
+          <p>Production diagnosis cannot rely on an unmanaged local process when security, scaling, and governance matter.</p>
+        </article>
+        <article class="impact-item">
+          <small>02 · Platform</small>
+          <h3>AgentCore hosts the workflow.</h3>
+          <p>The LangGraph application and MCP integrations run inside a containerized cloud execution boundary.</p>
+        </article>
+        <article class="impact-item">
+          <small>03 · Operations</small>
+          <h3>Every invocation becomes observable.</h3>
+          <p>IAM authorization and CloudWatch telemetry provide the controls required for production AI operations.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="architecture" class="section">
+      <div class="shell architecture-layout">
+        <div class="architecture-copy">
+          <span class="section-index">Architecture · 03</span>
+          <h2>A layered runtime from request boundary to telemetry.</h2>
+          <p>
+            The deployment separates authorization, runtime execution,
+            workflow orchestration, business tool access, and observability.
+            Each concern can evolve without changing the diagnosis contract.
+          </p>
+        </div>
+
+        <div class="architecture-board bedrock-board" aria-label="Detailed AWS Bedrock AgentCore architecture">
+          <span class="board-label">AWS_AGENTCORE · DEPLOYMENT TOPOLOGY</span>
+          <div class="node request"><small>Client</small><b>User request</b></div>
+          <div class="node iam"><small>Security</small><b>IAM authorization</b></div>
+          <div class="node node-main agentcore"><small>Managed boundary</small><b>AWS Bedrock AgentCore Runtime</b></div>
+          <div class="node container"><small>Packaging</small><b>Docker container</b></div>
+          <div class="node workflow"><small>Application</small><b>LangGraph workflow</b></div>
+          <div class="node tools"><small>Integration</small><b>MCP tool layer</b></div>
+          <div class="node node-main cloudwatch"><small>Operations</small><b>CloudWatch logs · traces · metrics</b></div>
+          <i class="connector line-a"></i><i class="connector line-b"></i>
+          <i class="connector line-c"></i><i class="connector line-d"></i>
+          <i class="connector line-e"></i><i class="connector line-f"></i>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="shell">
+        <div class="section-head">
+          <div>
+            <span class="section-index">Operational design · 04</span>
+            <h2>Production concerns become first-class architecture.</h2>
+          </div>
+          <p>
+            The runtime adds security, deployment consistency, monitoring, and
+            model resilience around the same diagnosis workflow used locally.
+          </p>
+        </div>
+
+        <div class="feature-grid">
+          <article class="feature-card feature-wide">
+            <small>Runtime boundary</small>
+            <h3>Containerized execution inside Bedrock AgentCore</h3>
+            <p>
+              Docker packages the LangGraph application and its dependencies into
+              a repeatable unit. AgentCore provides the managed execution boundary
+              for invocation, scaling, and managed AI operations.
+            </p>
+          </article>
+          <article class="feature-card">
+            <small>Security</small>
+            <h3>IAM-authorized requests</h3>
+            <p>Runtime access is controlled through AWS identity and authorization rather than an open application endpoint.</p>
+          </article>
+          <article class="feature-card">
+            <small>Observability</small>
+            <h3>CloudWatch telemetry</h3>
+            <p>Logs, traces, and runtime signals make workflow behavior visible during production diagnosis.</p>
+          </article>
+          <article class="feature-card">
+            <small>Integration</small>
+            <h3>MCP tools stay reusable</h3>
+            <p>The product-access layer remains separate from deployment and can be reused by future agents.</p>
+          </article>
+          <article class="feature-card">
+            <small>Roadmap</small>
+            <h3>Foundation for multi-agent operations</h3>
+            <ul>
+              <li>Add a Supervisor Agent for routing and policy control</li>
+              <li>Run Catalog, Inventory, Pricing, and Summary agents in the same runtime model</li>
+              <li>Expand CloudWatch telemetry to agent-level traces and tool-call metrics</li>
+              <li>Preserve local generation with model fallback for response resilience</li>
+            </ul>
+          </article>
+          <article class="feature-card feature-wide">
+            <small>Architecture highlights</small>
+            <h3>Operational concerns represented in the codebase</h3>
+            <ul>
+              <li>Containerized LangGraph runtime with a repeatable deployment boundary</li>
+              <li>IAM-authorized invocation instead of an open application endpoint</li>
+              <li>MCP tools isolated from runtime and orchestration concerns</li>
+              <li>CloudWatch logging and telemetry around workflow execution</li>
+            </ul>
+          </article>
+          <article class="feature-card">
+            <small>Engineering learnings</small>
+            <h3>What deployment design reinforced</h3>
+            <ul>
+              <li>Security and observability must be architecture inputs</li>
+              <li>Packaging the workflow clarifies runtime dependencies</li>
+              <li>Deployment should not change the diagnosis contract</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-compact">
+      <div class="shell stack-band">
+        <h2>Deployment stack</h2>
+        <div class="stack-list">
+          <span>AWS Bedrock AgentCore</span><span>Docker</span><span>IAM</span>
+          <span>CloudWatch</span><span>LangGraph</span><span>MCP tools</span>
+          <span>FastAPI adapter</span><span>Pydantic</span><span>Local LLM</span><span>Model fallback</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <a class="shell next-case" href="index.html#writing">
+        <div>
+          <small>Complete architecture journey</small>
+          <h2>Return to the portfolio and explore the wider system.</h2>
+        </div>
+        <span class="next-arrow">↗</span>
+      </a>
+    </section>
+  </main>
+
+  <footer class="case-footer">
+    <div class="shell footer-inner">
+      <span>© 2026 Kranthi Saini</span>
+      <span>AWS Bedrock AgentCore · Commerce AI Deployment</span>
     </div>
-
-    <div class="card">
-      <h3>Cloud Solution</h3>
-      <p>
-        <p>
-Cloud-native deployment of the Commerce AI Diagnosis Platform using AWS Bedrock AgentCore.
-The solution deploys LangGraph orchestration workflows and MCP-connected enterprise tools
-within a containerized AgentCore runtime, providing secure execution, observability,
-scalability and enterprise-grade AI operations. The current architecture serves as the
-foundation for future Supervisor-driven Multi-Agent orchestration running within the same
-AWS Bedrock AgentCore deployment model.
-</p>
-      </p>
-    </div>
-
-    <div class="card">
-      <h3>Business Value</h3>
-      <p>
-  Enables enterprise AI workflows to run within a secure, scalable and
-  observable cloud-native runtime using AWS Bedrock AgentCore, IAM security
-  and CloudWatch monitoring.
-</p>
-    </div>
-
-  </div>
-</section>
-
-<section class="section">
-  <div class="container">
-    <h2 class="section-title">AgentCore Runtime Flow</h2>
-
-    <div class="flow">
-      <div class="flow-box"><strong>1</strong><br>User Request</div>
-      <div class="flow-box"><strong>2</strong><br>AgentCore Runtime</div>
-      <div class="flow-box"><strong>3</strong><br>LangGraph Orchestration</div>
-      <div class="flow-box"><strong>4</strong><br>MCP Tools</div>
-      <div class="flow-box"><strong>5</strong><br>Diagnosis Workflow</div>
-      <div class="flow-box"><strong>6</strong><br>AI Recommendation</div>
-    </div>
-  </div>
-</section>
-
-<section class="section">
-  <div class="container grid-2">
-
-    <div class="card">
-      <h2 class="section-title">Cloud Architecture</h2>
-
-      <div class="diagram"><pre>User Request
-      ↓
-AWS Bedrock AgentCore Runtime
-      ↓
-Container Runtime
-      ↓
-LangGraph Orchestration
-      ↓
-MCP Tool Layer
-      ↓
-Enterprise Product Services
-      ↓
-Diagnosis Workflow
-      ↓
-Local LLM
-      ↓
-Groq Fallback
-      ↓
-CloudWatch Observability
-      ↓
-AI Recommendation</pre></div>
-    </div>
-
-    <div class="card">
-      <h2 class="section-title">Key Components</h2>
-
-      <ul>
-        <li><strong>AWS Bedrock AgentCore:</strong> Runtime boundary for enterprise AI workloads</li>
-        <li><strong>LangGraph Orchestration:</strong> Coordinates diagnosis workflow execution</li>
-        <li><strong>MCP Tools:</strong> Provides enterprise data retrieval boundary</li>
-        <li><strong>Fallback Mechanism:</strong> Local LLM with Groq fallback support</li>
-        <li><strong>CloudWatch:</strong> Operational monitoring and observability</li>
-        <li><strong>IAM Security:</strong> Secure runtime access and authorization</li>
-      </ul>
-    </div>
-
-  </div>
-</section>
-
-<section class="section">
-  <div class="container grid-2">
-
-    <div class="card">
-      <h2 class="section-title">Deployment Design</h2>
-
-      <ul>
-        <li>Containerized runtime deployment using Docker</li>
-        <li>Bedrock AgentCore Runtime for cloud execution</li>
-        <li>HTTP-based invocation with IAM authorization</li>
-        <li>CloudWatch / GenAI observability for runtime logs</li>
-        <li>Environment configuration for model provider integration</li>
-        <li>FastAPI remains available as a local testing adapter</li>
-      </ul>
-    </div>
-
-    <div class="card">
-      <h2 class="section-title">Technology Stack</h2>
-
-      <span class="pill">AWS Bedrock AgentCore</span>
-      <span class="pill">LangGraph</span>
-      <span class="pill">MCP Tools</span>
-      <span class="pill">Docker</span>
-      <span class="pill">CloudWatch</span>
-      <span class="pill">IAM Security</span>
-      <span class="pill">FastAPI</span>
-      <span class="pill">Pydantic</span>
-      <span class="pill">Local LLM</span>
-      <span class="pill">Groq Fallback</span>
-    </div>
-
-  </div>
-</section>
-
-<section class="section">
-  <div class="container grid-2">
-
-    <div class="card">
-      <h2 class="section-title">Current Implementation</h2>
-
-      <ul>
-        <li>LangGraph orchestration workflow deployed through AgentCore runtime</li>
-        <li>MCP-connected product data tools reused from the diagnosis platform</li>
-        <li>Containerized deployment model using Docker</li>
-        <li>Secure runtime invocation using IAM authorization</li>
-        <li>CloudWatch-based logging and observability</li>
-        <li>LLM fallback support for resilient response generation</li>
-      </ul>
-    </div>
-
-    <div class="card">
-      <h2 class="section-title">Future Multi-Agent Roadmap</h2>
-
-      <ul>
-        <li>Introduce Supervisor Agent for request routing</li>
-        <li>Add specialized Diagnosis Agents for catalog, inventory and pricing</li>
-        <li>Add Summary Agent for executive-level recommendations</li>
-        <li>Allow agents to call MCP-connected tools independently</li>
-        <li>Expand AgentCore deployment to support full multi-agent orchestration</li>
-      </ul>
-    </div>
-
-  </div>
-</section>
-
-<section class="section">
-  <div class="container card">
-
-  <h2 class="section-title">What This Shows</h2>
-
-  <ul>
-    <li>Cloud-native deployment of Enterprise AI workloads on AWS Bedrock AgentCore</li>
-    <li>Containerized AI runtime architecture using Docker</li>
-    <li>LangGraph orchestration deployed in a managed runtime</li>
-    <li>MCP-connected enterprise system integration</li>
-    <li>Fallback architecture using Local LLM and Groq fallback</li>
-    <li>Operational monitoring using CloudWatch</li>
-    <li>Future-ready foundation for Supervisor-driven Multi-Agent orchestration</li>
-  </ul>
-
-</div>
-</section>
-
-<footer>
-  <div class="container">
-    © 2026 Kranthi Saini | AWS Bedrock AgentCore Deployment
-  </div>
-</footer>
-
+  </footer>
 </body>
 </html>
