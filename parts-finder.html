@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Architecture case study for a conversational AI vehicle-parts finder built with React, FastAPI, LangGraph, MCP, Ollama, and Groq.">
+  <title>Enterprise AI Parts Finder | Kranthi Saini</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="case-study.css">
+  <style>
+    body.theme-finder {
+      --accent: 96, 165, 250;
+      --accent-solid: #60a5fa;
+    }
+
+    .finder-hero-map .customer-node {
+      top: 88px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .finder-hero-map .api-node {
+      top: 190px;
+      left: 50%;
+      min-width: 170px;
+      transform: translateX(-50%);
+      text-align: center;
+    }
+
+    .finder-hero-map .route-row {
+      position: absolute;
+      top: 310px;
+      right: 28px;
+      left: 28px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .finder-hero-map .route-row .node {
+      position: static;
+      min-width: 0;
+      text-align: center;
+    }
+
+    .finder-hero-map .result-node {
+      right: 36px;
+      bottom: 34px;
+      left: 36px;
+      text-align: center;
+    }
+
+    .finder-hero-map .hero-line-a {
+      top: 162px;
+      left: 50%;
+      width: 42px;
+      transform: rotate(90deg);
+    }
+
+    .finder-hero-map .hero-line-b {
+      top: 270px;
+      left: 50%;
+      width: 48px;
+      transform: rotate(90deg);
+    }
+
+    .finder-board .customer { top: 82px; left: 50%; transform: translateX(-50%); }
+    .finder-board .frontend { top: 178px; left: 50%; transform: translateX(-50%); }
+    .finder-board .voice { top: 292px; left: 6%; }
+    .finder-board .graph { top: 292px; left: 50%; transform: translateX(-50%); }
+    .finder-board .session { top: 292px; right: 6%; }
+    .finder-board .ollama { bottom: 155px; left: 5%; }
+    .finder-board .groq { bottom: 155px; left: 50%; transform: translateX(-50%); }
+    .finder-board .mcp { right: 5%; bottom: 155px; }
+    .finder-board .results { right: 15%; bottom: 42px; left: 15%; text-align: center; }
+    .finder-board .line-a { top: 154px; left: 50%; width: 30px; transform: rotate(90deg); }
+    .finder-board .line-b { top: 258px; left: 50%; width: 36px; transform: rotate(90deg); }
+    .finder-board .line-c { top: 335px; left: 22%; width: 150px; transform: rotate(-8deg); }
+    .finder-board .line-d { top: 335px; left: 57%; width: 150px; transform: rotate(8deg); }
+    .finder-board .line-e { bottom: 210px; left: 27%; width: 115px; transform: rotate(18deg); }
+    .finder-board .line-f { bottom: 210px; left: 57%; width: 115px; transform: rotate(-18deg); }
+    .finder-board .line-g { bottom: 126px; left: 50%; width: 55px; transform: rotate(90deg); }
+
+    @media (max-width: 700px) {
+      .finder-hero-map .route-row {
+        right: 14px;
+        left: 14px;
+        gap: 6px;
+      }
+
+      .finder-board .node {
+        min-width: 108px;
+        padding: 11px;
+      }
+
+      .finder-board .voice,
+      .finder-board .ollama { left: 3%; }
+
+      .finder-board .session,
+      .finder-board .mcp { right: 3%; }
+    }
+  </style>
+</head>
+<body class="theme-finder">
+  <nav class="case-nav">
+    <div class="shell nav-inner">
+      <a class="brand" href="index.html#work">
+        <span class="brand-mark">KS</span>
+        <span class="brand-copy"><b>Kranthi Saini</b><small>Architecture case study</small></span>
+      </a>
+      <div class="nav-actions">
+        <a class="nav-link nav-link-secondary" href="diagnosis-ai.html">Diagnosis platform</a>
+        <a class="nav-link" href="index.html#work">&#8592; Portfolio</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <section class="shell case-hero">
+      <div class="hero-copy">
+        <div class="eyebrow">03 &middot; Customer Commerce AI</div>
+        <h1>Enterprise AI <span>Parts Finder.</span></h1>
+        <p>
+          A customer-facing vehicle-parts assistant that turns natural language
+          or voice into structured fitment context, orchestrates local and cloud
+          models, and retrieves matching products through an MCP tool boundary.
+        </p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="https://github.com/iam-kranthi/enterprise-ai-parts-finder" target="_blank" rel="noreferrer">View GitHub repository &#8599;</a>
+          <a class="button" href="#architecture">Explore architecture &#8595;</a>
+          <a class="button" href="index.html#work">Back to projects</a>
+        </div>
+        <div class="hero-tags">
+          <span>React</span><span>FastAPI</span><span>LangGraph</span>
+          <span>MCP</span><span>Ollama</span><span>Groq Whisper</span>
+        </div>
+      </div>
+
+      <div class="hero-system finder-hero-map" aria-label="AI parts finder workflow visualization">
+        <div class="system-bar"><span>parts_finder.workflow</span><i>ready</i></div>
+        <div class="node customer-node"><small>Customer</small><b>Vehicle + part request</b></div>
+        <div class="node node-main api-node"><small>Experience</small><b>React + FastAPI</b></div>
+        <div class="route-row">
+          <div class="node"><small>Understand</small><b>LangGraph</b></div>
+          <div class="node"><small>Transcribe</small><b>Groq Whisper</b></div>
+          <div class="node"><small>Retrieve</small><b>MCP tools</b></div>
+        </div>
+        <div class="node node-main result-node"><small>Output</small><b>Vehicle-specific product options</b></div>
+        <i class="connector hero-line-a"></i>
+        <i class="connector hero-line-b"></i>
+      </div>
+    </section>
+
+    <section class="section section-compact">
+      <div class="shell impact-grid">
+        <article class="impact-item">
+          <small>01 &middot; Customer problem</small>
+          <h3>Parts search begins with incomplete language.</h3>
+          <p>Customers may provide a vehicle, year, model, or part across multiple messages and expect the system to remember context.</p>
+        </article>
+        <article class="impact-item">
+          <small>02 &middot; System response</small>
+          <h3>Conversation becomes structured fitment state.</h3>
+          <p>LangGraph extracts and validates vehicle details while the session layer preserves only the temporary context needed for the search.</p>
+        </article>
+        <article class="impact-item">
+          <small>03 &middot; Customer value</small>
+          <h3>The interface guides rather than exposes the architecture.</h3>
+          <p>Text, voice, progress states, and product cards create one focused workflow designed for customer-facing tablet and desktop use.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="architecture" class="section">
+      <div class="shell architecture-layout">
+        <div class="architecture-copy">
+          <span class="section-index">Architecture &middot; 03</span>
+          <h2>One customer workflow, several isolated system responsibilities.</h2>
+          <p>
+            React owns the customer interaction. FastAPI defines the service
+            boundary. LangGraph manages state transitions, model routing extracts
+            vehicle data, and MCP keeps product access separate from conversational
+            reasoning.
+          </p>
+        </div>
+
+        <div class="architecture-board finder-board" aria-label="Detailed AI parts finder architecture">
+          <span class="board-label">PARTS_FINDER &middot; END-TO-END FLOW</span>
+          <div class="node customer"><small>Input</small><b>Text or voice</b></div>
+          <div class="node frontend"><small>Interface</small><b>React + Vite</b></div>
+          <div class="node voice"><small>Audio</small><b>Browser recorder</b></div>
+          <div class="node node-main graph"><small>Control</small><b>LangGraph workflow</b></div>
+          <div class="node session"><small>Context</small><b>5-minute memory</b></div>
+          <div class="node ollama"><small>Primary model</small><b>Local Ollama</b></div>
+          <div class="node groq"><small>Cloud recovery</small><b>Groq + Whisper</b></div>
+          <div class="node mcp"><small>Product boundary</small><b>MCP search tool</b></div>
+          <div class="node node-main results"><small>Response</small><b>Fitment context + product cards</b></div>
+          <i class="connector line-a"></i><i class="connector line-b"></i>
+          <i class="connector line-c"></i><i class="connector line-d"></i>
+          <i class="connector line-e"></i><i class="connector line-f"></i>
+          <i class="connector line-g"></i>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="shell">
+        <div class="section-head">
+          <div>
+            <span class="section-index">Engineering decisions &middot; 04</span>
+            <h2>Reliability and privacy are part of the product behavior.</h2>
+          </div>
+          <p>
+            The implementation does more than connect an interface to a model.
+            It validates extraction quality, recovers from provider failures,
+            limits temporary data, and communicates voice processing honestly.
+          </p>
+        </div>
+
+        <div class="feature-grid">
+          <article class="feature-card feature-wide">
+            <small>Model routing</small>
+            <h3>Local-first extraction with cloud fallback</h3>
+            <p>Ollama is the primary extraction provider. Network failures, malformed JSON, incomplete explicit-year extraction, and refusal responses automatically route to Groq behind the same typed result contract.</p>
+          </article>
+          <article class="feature-card">
+            <small>Voice</small>
+            <h3>Controlled transcription flow</h3>
+            <p>The browser records a short audio clip and sends it to a dedicated FastAPI endpoint backed by Groq Whisper, avoiding dependence on the browser's unreliable speech service.</p>
+          </article>
+          <article class="feature-card">
+            <small>Orchestration</small>
+            <h3>Explicit LangGraph state</h3>
+            <p>Vehicle details, intent, next-step routing, replies, and products move through a defined graph instead of being hidden in one large prompt.</p>
+          </article>
+          <article class="feature-card">
+            <small>Tool boundary</small>
+            <h3>MCP-isolated product access</h3>
+            <p>The backend starts an MCP server over stdio and invokes a typed product-search tool, keeping product retrieval independent from the agent workflow.</p>
+          </article>
+          <article class="feature-card">
+            <small>Privacy</small>
+            <h3>Temporary context, not customer profiles</h3>
+            <p>Sessions live only in server memory, expire after five minutes, can be cleared immediately, and do not write customer vehicle fields to application logs.</p>
+          </article>
+          <article class="feature-card feature-wide">
+            <small>Customer experience</small>
+            <h3>A premium interface with a narrow decision path</h3>
+            <ul>
+              <li>Responsive React layout designed for customer-facing tablets and desktops</li>
+              <li>Clear empty, listening, transcribing, loading, and product-result states</li>
+              <li>Plain-language privacy disclosure for temporary search and voice processing</li>
+              <li>One focused action: describe the vehicle and find compatible options</li>
+            </ul>
+          </article>
+          <article class="feature-card">
+            <small>Verification</small>
+            <h3>Automated checks across the stack</h3>
+            <ul>
+              <li>24 backend tests covering graph, routes, fallback, nodes, and expiration</li>
+              <li>Frontend ESLint validation</li>
+              <li>Production Vite build verification</li>
+              <li>Typed FastAPI request and response models</li>
+            </ul>
+          </article>
+          <article class="feature-card">
+            <small>Current boundary</small>
+            <h3>Product data is intentionally mocked</h3>
+            <p>The MCP tool currently returns representative products. A production release would replace that function with the real Bloomreach catalog, price, inventory, and fitment APIs.</p>
+          </article>
+          <article class="feature-card feature-wide">
+            <small>Engineering learnings</small>
+            <h3>What this implementation reinforced</h3>
+            <ul>
+              <li>Provider fallback must include response-quality failures, not only exceptions</li>
+              <li>Customer-facing AI benefits from progressive context collection rather than one perfect prompt</li>
+              <li>Privacy statements should describe actual storage, logging, and third-party processing behavior</li>
+              <li>Tool protocols such as MCP keep product integrations replaceable as the agent evolves</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-compact">
+      <div class="shell stack-band">
+        <h2>Implementation stack</h2>
+        <div class="stack-list">
+          <span>React</span><span>Vite</span><span>Tailwind CSS</span>
+          <span>FastAPI</span><span>Pydantic</span><span>LangGraph</span>
+          <span>MCP</span><span>Ollama</span><span>Groq</span>
+          <span>Whisper</span><span>Uvicorn</span><span>Unittest</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <a class="shell next-case" href="diagnosis-ai.html">
+        <div>
+          <small>Related architecture</small>
+          <h2>Explore agentic root-cause analysis for commerce systems.</h2>
+        </div>
+        <span class="next-arrow">&#8599;</span>
+      </a>
+    </section>
+  </main>
+
+  <footer class="case-footer">
+    <div class="shell footer-inner">
+      <span>&copy; 2026 Kranthi Saini</span>
+      <span>Commerce AI &middot; Enterprise AI Parts Finder</span>
+    </div>
+  </footer>
+</body>
+</html>

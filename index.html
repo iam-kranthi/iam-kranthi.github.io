@@ -386,7 +386,7 @@
             <div class="section-kicker">Selected Work</div>
             <h2>Building AI Systems<br>That Diagnose, Reason & Scale.</h2>
             <p>
-              Two implemented AI systems, plus the Bedrock AgentCore deployment
+              Three implemented AI systems, plus the Bedrock AgentCore deployment
               layer for the diagnosis platform and a clearly labeled roadmap.
             </p>
           </div>
@@ -619,6 +619,114 @@
             <div class="links">
               <a href="https://github.com/iam-kranthi/commerce-ai-diagnosis-platform" target="_blank" rel="noreferrer">GitHub Repository ↗</a>
               <a href="diagnosis-ai.html">View Case Study</a>
+            </div>
+          </article>
+
+          <article class="project-card reveal project-theme-blue">
+            <div class="project-top">
+              <small>PROJECT_03</small>
+              <strong>COMMERCE AI</strong>
+            </div>
+            <h3>Enterprise AI Parts Finder</h3>
+            <p class="small-text">Conversational vehicle-fitment search with resilient model routing</p>
+            <div class="project-visual network parts-finder-preview">
+              <div class="preview-head">
+                <span>REACT &middot; LANGGRAPH &middot; MCP &middot; VOICE</span>
+                <span class="preview-live"><i></i> implemented</span>
+              </div>
+              <svg class="preview-art" viewBox="0 0 660 174" aria-hidden="true">
+                <defs>
+                  <linearGradient id="parts-route" x1="0" y1="0" x2="1" y2="0">
+                    <stop offset="0" stop-color="#67e8f9"/>
+                    <stop offset=".52" stop-color="#60a5fa"/>
+                    <stop offset="1" stop-color="#c4b5fd"/>
+                  </linearGradient>
+                  <linearGradient id="parts-node" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0" stop-color="#151b25"/>
+                    <stop offset="1" stop-color="#090c12"/>
+                  </linearGradient>
+                  <filter id="parts-glow" x="-80%" y="-80%" width="260%" height="260%">
+                    <feGaussianBlur in="SourceGraphic" stdDeviation="2.2" result="blur"/>
+                    <feMerge>
+                      <feMergeNode in="blur"/>
+                      <feMergeNode in="SourceGraphic"/>
+                    </feMerge>
+                  </filter>
+                </defs>
+
+                <g fill="none" stroke="url(#parts-route)" stroke-width="1.4" stroke-opacity=".58">
+                  <path d="M96 86H145"/>
+                  <path d="M255 86H302"/>
+                  <path d="M412 86H458"/>
+                  <path d="M520 66V39H571"/>
+                  <path d="M520 106V135H571"/>
+                </g>
+
+                <g fill="#60a5fa" filter="url(#parts-glow)">
+                  <circle cx="119" cy="86" r="3"/>
+                  <circle cx="279" cy="86" r="3"/>
+                  <circle cx="435" cy="86" r="3"/>
+                  <circle cx="545" cy="39" r="3"/>
+                </g>
+
+                <g>
+                  <rect x="18" y="59" width="78" height="54" rx="14" fill="url(#parts-node)" stroke="#67e8f9" stroke-opacity=".34"/>
+                  <path d="M37 88h14m-10-5-5 5 5 5" fill="none" stroke="#67e8f9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  <text x="58" y="82" fill="#e2fbff" font-family="JetBrains Mono, monospace" font-size="8" font-weight="800">CUSTOMER</text>
+                  <text x="58" y="96" fill="#718096" font-family="JetBrains Mono, monospace" font-size="6.5">text / voice</text>
+                </g>
+
+                <g>
+                  <rect x="145" y="53" width="110" height="66" rx="15" fill="url(#parts-node)" stroke="#60a5fa" stroke-opacity=".4"/>
+                  <circle cx="167" cy="86" r="9" fill="#60a5fa" opacity=".16"/>
+                  <path d="M162 86h10m-5-5v10" stroke="#93c5fd" stroke-width="1.5" stroke-linecap="round"/>
+                  <text x="184" y="81" fill="#eff6ff" font-family="JetBrains Mono, monospace" font-size="8" font-weight="800">FASTAPI</text>
+                  <text x="184" y="95" fill="#718096" font-family="JetBrains Mono, monospace" font-size="6.5">session + API</text>
+                </g>
+
+                <g>
+                  <rect x="302" y="48" width="110" height="76" rx="16" fill="url(#parts-node)" stroke="#a5b4fc" stroke-opacity=".46"/>
+                  <circle cx="328" cy="86" r="12" fill="#818cf8" opacity=".14"/>
+                  <circle cx="328" cy="86" r="6" fill="#a5b4fc" filter="url(#parts-glow)"/>
+                  <text x="348" y="81" fill="#eef2ff" font-family="JetBrains Mono, monospace" font-size="8" font-weight="800">LANGGRAPH</text>
+                  <text x="348" y="95" fill="#777b95" font-family="JetBrains Mono, monospace" font-size="6.5">extract + route</text>
+                </g>
+
+                <g>
+                  <rect x="458" y="53" width="62" height="66" rx="15" fill="url(#parts-node)" stroke="#c4b5fd" stroke-opacity=".4"/>
+                  <circle cx="489" cy="76" r="6" fill="#c4b5fd" opacity=".9"/>
+                  <text x="489" y="98" fill="#f5f3ff" font-family="JetBrains Mono, monospace" font-size="8" font-weight="800" text-anchor="middle">MCP</text>
+                  <text x="489" y="109" fill="#7d748e" font-family="JetBrains Mono, monospace" font-size="6" text-anchor="middle">tools</text>
+                </g>
+
+                <g>
+                  <rect x="571" y="21" width="72" height="36" rx="10" fill="#0c1119" stroke="#67e8f9" stroke-opacity=".3"/>
+                  <circle cx="585" cy="39" r="4" fill="#4ade80"/>
+                  <text x="596" y="37" fill="#dffbff" font-family="JetBrains Mono, monospace" font-size="7" font-weight="800">OLLAMA</text>
+                  <text x="596" y="47" fill="#64748b" font-family="JetBrains Mono, monospace" font-size="5.5">local first</text>
+                </g>
+
+                <g>
+                  <rect x="571" y="117" width="72" height="36" rx="10" fill="#0c1119" stroke="#c4b5fd" stroke-opacity=".3"/>
+                  <circle cx="585" cy="135" r="4" fill="#c4b5fd"/>
+                  <text x="596" y="133" fill="#f5f3ff" font-family="JetBrains Mono, monospace" font-size="7" font-weight="800">GROQ</text>
+                  <text x="596" y="143" fill="#746b82" font-family="JetBrains Mono, monospace" font-size="5.5">fallback + voice</text>
+                </g>
+              </svg>
+            </div>
+            <p>
+              Built a customer-facing vehicle-parts assistant that combines a
+              premium React experience with LangGraph orchestration, MCP product
+              tools, local Ollama extraction, Groq fallback, and voice transcription.
+              Temporary sessions and privacy-aware logging keep the experience
+              useful without creating permanent customer profiles.
+            </p>
+            <div class="tags">
+              <span>React</span><span>FastAPI</span><span>LangGraph</span><span>MCP</span><span>Ollama</span><span>Groq Whisper</span>
+            </div>
+            <div class="links">
+              <a href="https://github.com/iam-kranthi/enterprise-ai-parts-finder" target="_blank" rel="noreferrer">GitHub Repository &#8599;</a>
+              <a href="parts-finder.html">View Case Study</a>
             </div>
           </article>
 
