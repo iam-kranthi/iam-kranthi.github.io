@@ -2157,6 +2157,10 @@ footer a {
   margin-bottom: 32px !important;
 }
 
+.about-left > p.about-summary {
+  font-size: 15px !important;
+}
+
 .about-right {
   padding-top: 0 !important;
 }
